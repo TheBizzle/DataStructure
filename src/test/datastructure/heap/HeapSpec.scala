@@ -1,6 +1,5 @@
-package datastructure.heap.test
+package datastructure.heap
 
-import datastructure.heap.Heap
 import org.scalatest.{BeforeAndAfterEach, GivenWhenThen, FlatSpec}
 import org.scalatest.matchers.ShouldMatchers
 

@@ -1,8 +1,8 @@
-package datastructure.test.suitereporter
+package datastructure.suitereporter
 
-import tester.test.suitereporter.SuiteReporter
-import datastructure.heap.test.HeapSpec
-import datastructure.bihashmap.test.BiHashMapSpec
+import tester.suitereporter.SuiteReporter
+import datastructure.heap.HeapSpec
+import datastructure.bihashmap.BiHashMapSpec
 
 /**
  * Created by IntelliJ IDEA.

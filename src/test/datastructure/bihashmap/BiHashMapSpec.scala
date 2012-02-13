@@ -1,7 +1,6 @@
-package datastructure.bihashmap.test
+package datastructure.bihashmap
 
 import org.scalatest.{GivenWhenThen, FlatSpec}
-import datastructure.bihashmap.BiHashMap
 import org.scalatest.matchers.ShouldMatchers
 
 /**
