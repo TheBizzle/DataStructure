@@ -1,4 +1,4 @@
-package datastructure.immutable
+package org.bizzle.datastructure.immutable
 
 /**
  * Created by IntelliJ IDEA.

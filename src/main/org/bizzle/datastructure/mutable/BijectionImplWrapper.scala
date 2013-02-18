@@ -1,4 +1,4 @@
-package datastructure.mutable
+package org.bizzle.datastructure.mutable
 
 import
   scala.collection.{ mutable, Set },

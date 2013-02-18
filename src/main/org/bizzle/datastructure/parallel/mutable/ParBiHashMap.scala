@@ -1,4 +1,4 @@
-package datastructure.parallel
+package org.bizzle.datastructure.parallel
 package mutable
 
 /**
@@ -21,7 +21,7 @@ class ParBiHashMap[A, B] private[datastructure](abm: HashMap[A, B], bam: HashMap
 extends ParHashMap[A, B]
    with ParMap[A, B]
    with GenericParMapTemplate[A, B, ParBiHashMap]
-   with ParMapLike[A, B, ParBiHashMap[A, B], datastructure.mutable.BiHashMap[A, B]]
+   with ParMapLike[A, B, ParBiHashMap[A, B], org.bizzle.datastructure.mutable.BiHashMap[A, B]]
    with ParHashTable[A, DefaultEntry[A, B]] //@ Doubtful
    with Serializable
 {

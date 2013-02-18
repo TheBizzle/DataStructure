@@ -1,10 +1,10 @@
-package datastructure
+package org.bizzle.datastructure
 
 import
-  tester.suite.SuiteReporter
+  org.bizzle.tester.suite.SuiteReporter
 
 import
-  datastructure.mutable._
+  org.bizzle.datastructure.mutable._
 
 /**
  * Created by IntelliJ IDEA.

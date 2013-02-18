@@ -1,4 +1,4 @@
-package datastructure.mutable
+package org.bizzle.datastructure.mutable
 
 import
   scala.collection.{ CustomParallelizable, generic, mutable },
@@ -6,7 +6,7 @@ import
     mutable.HashMap
 
 import
-  datastructure.parallel.mutable.ParBiHashMap
+  org.bizzle.datastructure.parallel.mutable.ParBiHashMap
 
 /**
  * Created by IntelliJ IDEA.

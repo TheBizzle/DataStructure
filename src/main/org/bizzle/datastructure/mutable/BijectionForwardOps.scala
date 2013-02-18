@@ -1,4 +1,4 @@
-package datastructure.mutable
+package org.bizzle.datastructure.mutable
 
 import
   scala.collection.{ generic, GenTraversableOnce, IndexedSeqLike, Map => CMap, mutable, Set },
