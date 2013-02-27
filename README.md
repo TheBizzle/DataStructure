@@ -1,5 +1,5 @@
-Tester
-======
+DataStructure
+=============
 
 Most notably, consists of a mostly-complete implementation of a `BiHashMap`, an experimental data structure that attempts to integrate the power of the standard Scala collections library with the idea of hashmap-based bijection.  It's of limited utility, and it's not without its kinks, but I found it to be a worthwhile experiment.
 
