@@ -63,7 +63,6 @@ private[mutable] trait BijectionReverseOps[A, B, M[X, Y] <: MMap[X, Y], R[X, Y] 
   def compose[C]              (g: (C) => B)                  (implicit ignore: DummyImplicit) : (C) => A                = bImplWrapper compose g
   def orElse[B1 <: B, A1 >: A](that: PartialFunction[B1, A1])(implicit ignore: DummyImplicit) : PartialFunction[B1, A1] = bImplWrapper orElse that
 
-  //@ Fix
   def filterBs(p: (B) => Boolean) : CMap[A, B] = bImplWrapper filterKeys p map (_.swap)
   def mapAs[C](f: (A) => C)       : CMap[C, B] = bImplWrapper mapValues  f map (_.swap)
 
