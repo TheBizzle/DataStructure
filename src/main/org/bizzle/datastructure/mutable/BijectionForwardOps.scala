@@ -63,7 +63,6 @@ private[mutable] trait BijectionForwardOps[A, B, M[X, Y] <: MMap[X, Y], R[X, Y] 
   override def compose[C]              (g: (C) => A)                   : (C) => B                = fImplWrapper compose g
   override def orElse[A1 <: A, B1 >: B](that: PartialFunction[A1, B1]) : PartialFunction[A1, B1] = fImplWrapper orElse that
 
-  //@ Fix
   def filterAs(p: (A) => Boolean) : CMap[A, B] = fImplWrapper filterKeys p
   def mapBs[C](f: (B) => C)       : CMap[A, C] = fImplWrapper mapValues  f
 
