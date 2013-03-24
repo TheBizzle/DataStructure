@@ -24,8 +24,9 @@ trait Bijection[A, B, M[X, Y] <: MMap[X, Y], Rpr[X, Y] <: Bijection[X, Y, M, Rpr
 
   protected def abMap:   M[A, B]
   protected def baMap:   M[B, A]
-  protected def myEmpty: Repr  //@ Yuck!  Let's find a way around this one day!  Done because, in this trait, I don't see how we can provide a base implementation of `empty`.
-                               // If we don't give one, though, `MapLike` and `MMap` get us an implementation that is incompatible with `Rpr`.
+  protected def myEmpty: Repr  // Yuck!  I wish there were some nice way around this....  I did this because, in this trait, I don't see how we can
+                               // provide a base implementation of `empty`.  If we don't give one, `MMap` and its `MapLike` get us an implementation
+                               // that is incompatible with `Rpr`, so we need to give _something_.  This seems better than throwing an exception....
 
   override def clear()                  { abMap.clear(); baMap.clear() }
   override def empty      : Repr      =   myEmpty
