@@ -2,7 +2,7 @@ name := "DataStructure"
 
 version := "0.7"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.10.1"
 
 artifactName := { (_, _, _) => "DataStructure.jar" }
 
