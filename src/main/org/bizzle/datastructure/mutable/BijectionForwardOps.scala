@@ -72,9 +72,9 @@ private[mutable] trait BijectionForwardOps[A, B, M[X, Y] <: MMap[X, Y], R[X, Y] 
   def aValues   : Iterable[A] = fImplWrapper.keys
 
   // Copying methods
-  override def copyToArray [C >: FTup](xs: Array[C])                       { fImplWrapper.copyToArray(xs) }
-  override def copyToArray [C >: FTup](xs: Array[C], start: Int)           { fImplWrapper.copyToArray(xs, start) }
-  override def copyToArray [C >: FTup](xs: Array[C], start: Int, len: Int) { fImplWrapper.copyToArray(xs, start, len) }
-  override def copyToBuffer[C >: FTup](dest: Buffer[C])                    { fImplWrapper.copyToBuffer(dest) }
+  override def copyToArray [C >: FTup](xs: Array[C])                       : Unit = { fImplWrapper.copyToArray(xs) }
+  override def copyToArray [C >: FTup](xs: Array[C], start: Int)           : Unit = { fImplWrapper.copyToArray(xs, start) }
+  override def copyToArray [C >: FTup](xs: Array[C], start: Int, len: Int) : Unit = { fImplWrapper.copyToArray(xs, start, len) }
+  override def copyToBuffer[C >: FTup](dest: Buffer[C])                    : Unit = { fImplWrapper.copyToBuffer(dest) }
 
 }

@@ -34,7 +34,7 @@ class BiHashMap[A, B] private[datastructure](override protected val abMap: HashM
   override def swap                 : BiHashMap[B, A]    = new BiHashMap(baMap.clone(), abMap.clone())
 
   // Toggles whether a size map is used to track hash map statistics for the child maps.
-  override def useSizeMap(t: Boolean) {
+  override def useSizeMap(t: Boolean) : Unit = {
     abMap.useSizeMap(t)
     baMap.useSizeMap(t)
   }

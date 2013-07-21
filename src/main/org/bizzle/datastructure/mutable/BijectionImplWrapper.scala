@@ -40,7 +40,7 @@ private[mutable] class BijectionImplWrapper[X, Y, M[I, J] <: MMap[I, J]](primary
     primaryMap.remove(key)
   }
 
-  def update(x: X, y: Y) {
+  def update(x: X, y: Y) : Unit = {
     val hold = primaryMap.get(x)
     primaryMap.update(x, y)
     hold foreach (secondaryMap.remove(_))
@@ -56,13 +56,13 @@ private[mutable] class BijectionImplWrapper[X, Y, M[I, J] <: MMap[I, J]](primary
   def mapValues[C](f: (Y) => C)     : collection.Map[X, C] = primaryMap mapValues f
 
   // Miscellaneously-used methods
-  def copyToArray[C >: Tup] (xs: Array[C])                                             { primaryMap.copyToArray(xs) }
-  def copyToArray[C >: Tup] (xs: Array[C], start: Int)                                 { primaryMap.copyToArray(xs, start) }
-  def copyToArray[C >: Tup] (xs: Array[C], start: Int = 0, len: Int = primaryMap.size) { primaryMap.copyToArray(xs, start, len) }
-  def copyToBuffer[C >: Tup](dest: collection.mutable.Buffer[C])                       { primaryMap.copyToBuffer(dest) }
+  def copyToArray[C >: Tup] (xs: Array[C])                                             : Unit = { primaryMap.copyToArray(xs) }
+  def copyToArray[C >: Tup] (xs: Array[C], start: Int)                                 : Unit = { primaryMap.copyToArray(xs, start) }
+  def copyToArray[C >: Tup] (xs: Array[C], start: Int = 0, len: Int = primaryMap.size) : Unit = { primaryMap.copyToArray(xs, start, len) }
+  def copyToBuffer[C >: Tup](dest: collection.mutable.Buffer[C])                       : Unit = { primaryMap.copyToBuffer(dest) }
 
-  private def clearBinds(x: X, y: Y) {
-    def removeY(y: Y) {
+  private def clearBinds(x: X, y: Y) : Unit = {
+    def removeY(y: Y) : Unit = {
       secondaryMap.get(y) foreach (primaryMap.remove(_))
       secondaryMap.remove(y)
     }

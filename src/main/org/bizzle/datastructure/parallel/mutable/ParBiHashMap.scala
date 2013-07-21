@@ -45,7 +45,7 @@ extends ParHashMap[A, B]
   override def put(key: A, value: B) = throw new UnsupportedOperationException("")
   override def +=(kv: (A, B)) = throw new UnsupportedOperationException("")
   override def -=(key: A) = throw new UnsupportedOperationException("")
-  override def clear() { throw new UnsupportedOperationException("") }
+  override def clear() : Unit = { throw new UnsupportedOperationException("") }
   override def splitter = throw new UnsupportedOperationException("")
 }
 

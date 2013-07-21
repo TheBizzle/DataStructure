@@ -71,9 +71,9 @@ private[mutable] trait BijectionReverseOps[A, B, M[X, Y] <: MMap[X, Y], R[X, Y] 
   def bSet      : collection.Set[B] = bImplWrapper.keySet
   def bValues   : Iterable[B]       = bImplWrapper.keys
 
-  def copyToArray [C >: BTup](xs: Array[C])                      (implicit ignore: DummyImplicit) { bImplWrapper.copyToArray(xs) }
-  def copyToArray [C >: BTup](xs: Array[C], start: Int)          (implicit ignore: DummyImplicit) { bImplWrapper.copyToArray(xs, start) }
-  def copyToArray [C >: BTup](xs: Array[C], start: Int, len: Int)(implicit ignore: DummyImplicit) { bImplWrapper.copyToArray(xs, start, len) }
-  def copyToBuffer[C >: BTup](dest: Buffer[C])                   (implicit ignore: DummyImplicit) { bImplWrapper.copyToBuffer(dest) }
+  def copyToArray [C >: BTup](xs: Array[C])                      (implicit ignore: DummyImplicit) : Unit = { bImplWrapper.copyToArray(xs) }
+  def copyToArray [C >: BTup](xs: Array[C], start: Int)          (implicit ignore: DummyImplicit) : Unit = { bImplWrapper.copyToArray(xs, start) }
+  def copyToArray [C >: BTup](xs: Array[C], start: Int, len: Int)(implicit ignore: DummyImplicit) : Unit = { bImplWrapper.copyToArray(xs, start, len) }
+  def copyToBuffer[C >: BTup](dest: Buffer[C])                   (implicit ignore: DummyImplicit) : Unit = { bImplWrapper.copyToBuffer(dest) }
 
 }

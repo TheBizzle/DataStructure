@@ -31,7 +31,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
 
   val biHash = BiHashMap[A, B]()
 
-  override def beforeEach() {
+  override def beforeEach() : Unit = {
     super.beforeEach()
     biHash.clear()
     biHash ++= BaseList
@@ -54,12 +54,12 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("+(elem)") {
-    def forwards(bhm: BHM, target: BHM, elems: AB*) {
+    def forwards(bhm: BHM, target: BHM, elems: AB*) : Unit = {
       testSameElems(bhm + elems(0),            target, false)
       testSameElems(bhm + elems(1),            target, false)
       testSameElems(bhm + elems(0) + elems(1), target, true)
     }
-    def backwards(bhm: BHM, target: BHM, elems: BA*) {
+    def backwards(bhm: BHM, target: BHM, elems: BA*) : Unit = {
       testSameElems(bhm + elems(0),            target, false)
       testSameElems(bhm + elems(1),            target, false)
       testSameElems(bhm + elems(0) + elems(1), target, true)
@@ -70,10 +70,10 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("+(elem1, elem2, elems)") {
-    def forwards(bhm: BHM, target: BHM, elems: AB*) {
+    def forwards(bhm: BHM, target: BHM, elems: AB*) : Unit = {
       testSameElems(bhm + (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
     }
-    def backwards(bhm: BHM, target: BHM, elems: BA*) {
+    def backwards(bhm: BHM, target: BHM, elems: BA*) : Unit = {
       testSameElems(bhm + (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
     }
     val myElems = Seq(9001 -> "nein tousend won", 4 -> "fier", 3 -> "shree, akchurry")
@@ -82,11 +82,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("++(genTraversableOnce[AB])") {
-    def forwards(bhm: BHM, target: GenTraversableOnce[AB], appendee: GenTraversableOnce[AB]) {
+    def forwards(bhm: BHM, target: GenTraversableOnce[AB], appendee: GenTraversableOnce[AB]) : Unit = {
       testSameElems(bhm ++ bhm toSeq,      bhm toSeq)
       testSameElems(bhm ++ appendee toList, target toList)
     }
-    def backwards(bhm: BHM, target: GenTraversableOnce[AB], appendee: GenTraversableOnce[BA]) {
+    def backwards(bhm: BHM, target: GenTraversableOnce[AB], appendee: GenTraversableOnce[BA]) : Unit = {
       testSameElems(bhm ++ bhm.flip toSeq, bhm toSeq)
       testSameElems(bhm ++ appendee toList, target toList)
     }
@@ -96,11 +96,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("++:(traversableOnce[AB])") {
-    def forwards(bhm: BHM, target: Traversable[AB], appendee: Traversable[AB]) {
+    def forwards(bhm: BHM, target: Traversable[AB], appendee: Traversable[AB]) : Unit = {
       testSameElems(bhm ++: bhm toSeq,      bhm toSeq)
       testSameElems(bhm ++: appendee toSeq, target toSeq)
     }
-    def backwards(bhm: BHM, target: Traversable[AB], appendee: Traversable[BA]) {
+    def backwards(bhm: BHM, target: Traversable[AB], appendee: Traversable[BA]) : Unit = {
       testSameElems(bhm.flip ++: bhm.flip map (_.swap) toSeq, bhm toSeq)
       testSameElems(bhm.flip ++: appendee map (_.swap) toSeq, target toSeq)
     }
@@ -144,11 +144,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("+=(elem1, elem2, elems)") {
-    def forwards(bhm: BHM, target: BHM, elems: AB*) {
+    def forwards(bhm: BHM, target: BHM, elems: AB*) : Unit = {
       testSameElems(bhm += (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
       testSameElems(bhm, target)
     }
-    def backwards(bhm: BHM, target: BHM, elems: BA*) {
+    def backwards(bhm: BHM, target: BHM, elems: BA*) : Unit = {
       testSameElems(bhm += (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
       testSameElems(bhm, target)
     }
@@ -158,10 +158,10 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("-(elem)") {
-    def forwards(bhm: BHM, targetElemPairs: (BHM, A)*) {
+    def forwards(bhm: BHM, targetElemPairs: (BHM, A)*) : Unit = {
       targetElemPairs.foldLeft(bhm){ case (acc, (target, elem)) => val x = acc - elem; testSameElems(x, target); x }
     }
-    def backwards(bhm: BHM, targetElemPairs: (BHM, B)*) {
+    def backwards(bhm: BHM, targetElemPairs: (BHM, B)*) : Unit = {
       targetElemPairs.foldLeft(bhm){ case (acc, (target, elem)) => val x = acc - elem; testSameElems(x, target); x }
     }
     val myPairs = BaseList.tails.toSeq drop 1 map (BiHashMap[A, B](_: _*)) zip BaseList
@@ -170,10 +170,10 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("-(elem1, elem2, elems)") {
-    def forwards(bhm: BHM, target: BHM, elems: A*) {
+    def forwards(bhm: BHM, target: BHM, elems: A*) : Unit = {
       testSameElems(bhm - (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
     }
-    def backwards(bhm: BHM, target: BHM, elems: B*) {
+    def backwards(bhm: BHM, target: BHM, elems: B*) : Unit = {
       testSameElems(bhm - (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
     }
     val (removables, pretarget) = BaseList splitAt (BaseList.size - 1)
@@ -182,11 +182,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("--(that)") {
-    def forwards(bhm: BHM, target: Traversable[AB], removees: Traversable[A]) {
+    def forwards(bhm: BHM, target: Traversable[AB], removees: Traversable[A]) : Unit = {
       (bhm -- bhm.aValues) should equal (BiHashMap.empty)
       testSameElems(bhm -- removees, target)
     }
-    def backwards(bhm: BHM, target: Traversable[AB], removees: Traversable[B]) {
+    def backwards(bhm: BHM, target: Traversable[AB], removees: Traversable[B]) : Unit = {
       (bhm -- bhm.bValues) should equal (BiHashMap.empty)
       testSameElems(bhm -- removees, target)
     }
@@ -196,7 +196,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("--=(traversableOnce[A])") {
-    def forwards(bhm: BHM, target: Traversable[AB], removees: Traversable[A]) {
+    def forwards(bhm: BHM, target: Traversable[AB], removees: Traversable[A]) : Unit = {
 
       val subjectEmpty = bhm.clone
       (subjectEmpty --= bhm.aValues) should equal (BiHashMap.empty)
@@ -208,7 +208,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
       testSameElems(subject, target)
 
     }
-    def backwards(bhm: BHM, target: Traversable[AB], removees: Traversable[B]) {
+    def backwards(bhm: BHM, target: Traversable[AB], removees: Traversable[B]) : Unit = {
 
       val subjectEmpty = bhm.clone
       (subjectEmpty --= bhm.bValues) should equal (BiHashMap.empty)
@@ -225,11 +225,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("-=(elem)") {
-    def forwards(bhm: BHM, target: BHM, elem: AB) {
+    def forwards(bhm: BHM, target: BHM, elem: AB) : Unit = {
       testSameElems(bhm -= elem._1, target)
       testSameElems(bhm, target)
     }
-    def backwards(bhm: BHM, target: BHM, elem: BA) {
+    def backwards(bhm: BHM, target: BHM, elem: BA) : Unit = {
       testSameElems(bhm -= elem._1, target)
       testSameElems(bhm, target)
     }
@@ -240,11 +240,11 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("-=(elem1, elem2, elems)") {
-    def forwards(bhm: BHM, target: BHM, elems: A*) {
+    def forwards(bhm: BHM, target: BHM, elems: A*) : Unit = {
       testSameElems(bhm -= (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
       testSameElems(bhm, target)
     }
-    def backwards(bhm: BHM, target: BHM, elems: B*) {
+    def backwards(bhm: BHM, target: BHM, elems: B*) : Unit = {
       testSameElems(bhm -= (elems(0), elems(1), elems.splitAt(2)._2: _*), target)
       testSameElems(bhm, target)
     }
@@ -676,7 +676,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("inits") {
-    def checkInits(bhm: BHM, inits: Iterator[BHM]) {
+    def checkInits(bhm: BHM, inits: Iterator[BHM]) : Unit = {
       inits.next should equal (bhm)
       if (bhm.nonEmpty) checkInits(bhm.init, inits)
     }
@@ -806,7 +806,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
 
   test("reduceLeftOption(func)") {
 
-    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) {
+    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) : Unit = {
       (bhm reduceLeftOption func) should equal (target)
     }
 
@@ -820,7 +820,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
 
   test("reduceOption(func)") {
 
-    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) {
+    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) : Unit = {
       (bhm reduceOption func) should equal (target)
     }
 
@@ -840,7 +840,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
 
   test("reduceRightOption(func)") {
 
-    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) {
+    def testFunc(bhm: BHM, target: Option[AB], func: (AB, AB) => AB) : Unit = {
       (bhm reduceRightOption func) should equal (target)
     }
 
@@ -955,7 +955,7 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   }
 
   test("tails") {
-    def checkTails(bhm: BHM, tails: Iterator[BHM]) {
+    def checkTails(bhm: BHM, tails: Iterator[BHM]) : Unit = {
       tails.next should equal (bhm)
       if (bhm.nonEmpty) checkTails(bhm.tail, tails)
     }
@@ -1124,6 +1124,8 @@ class BiHashMapFunSuite extends FunSuite with BeforeAndAfterEach with ShouldMatc
   // =============== UTILITIES ================
 
   // Why is it such a pain to test that two collections truly bear the same elements?!
-  private def testSameElems[T <% { def toSeq: Seq[AB] }](coll1: T, coll2: T, target: Boolean = true) { coll1.toSeq.sorted.sameElements(coll2.toSeq.sorted) should be (target) }
+  private def testSameElems[T <% { def toSeq: Seq[AB] }](coll1: T, coll2: T, target: Boolean = true) : Unit = {
+    coll1.toSeq.sorted.sameElements(coll2.toSeq.sorted) should be (target)
+  }
 
 }
